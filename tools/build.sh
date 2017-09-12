@@ -36,8 +36,9 @@ build_all()
 
 build_py()
 {
-  	echo Building python module...
-  	pip install -e ./python || exit 1
+ #  	echo Building python module...
+ #  	pip install -e ./python || exit 1
+    echo "..python build ignored.."
 }
 
 build_js()
@@ -113,11 +114,12 @@ build_alltest()
 
 build_pytest()
 {
-  	echo Testing python implementation...
-  	generate_tests
-  	cd python
-  	python --version
-  	./jsbeautifier/tests/shell-smoke-test.sh || exit 1
+  	# echo Testing python implementation...
+  	# generate_tests
+  	# cd python
+  	# python --version
+  	# ./jsbeautifier/tests/shell-smoke-test.sh || exit 1
+  	echo "..build pytest ignored.."
 }
 
 build_jstest()

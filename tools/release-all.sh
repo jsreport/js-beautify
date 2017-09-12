@@ -18,13 +18,14 @@ generate_changelog()
 
 release_python()
 {
-    git clean -xfd || exit 1
-    echo "__version__ = '$NEW_VERSION'" > python/jsbeautifier/__version__.py
-    git commit -am "Python $NEW_VERSION"
-    cd python
-    python setup.py register -r pypi
-    python setup.py sdist upload -r pypi
-    git push
+    # git clean -xfd || exit 1
+    # echo "__version__ = '$NEW_VERSION'" > python/jsbeautifier/__version__.py
+    # git commit -am "Python $NEW_VERSION"
+    # cd python
+    # python setup.py register -r pypi
+    # python setup.py sdist upload -r pypi
+    # git push
+    echo "..python release ignored.."
 }
 
 release_node()
@@ -38,13 +39,14 @@ release_node()
 
 release_web()
 {
-      local ORIGINAL_BRANCH
-      ORIGINAL_BRANCH=$(git branch | grep '[*] .*' | awk '{print $2}')
-      git clean -xfd || exit 1
-      git fetch || exit 1
-      git checkout -B gh-pages origin/gh-pages || exit 1
-      git merge origin/master && git push || exit 1
-      git checkout $ORIGINAL_BRANCH
+      # local ORIGINAL_BRANCH
+      # ORIGINAL_BRANCH=$(git branch | grep '[*] .*' | awk '{print $2}')
+      # git clean -xfd || exit 1
+      # git fetch || exit 1
+      # git checkout -B gh-pages origin/gh-pages || exit 1
+      # git merge origin/master && git push || exit 1
+      # git checkout $ORIGINAL_BRANCH
+      echo "..web release ignored.."
 }
 
 sedi() {
@@ -59,12 +61,13 @@ sedi() {
 
 update_readme_versions()
 {
-    git clean -xfd || exit 1
-    sedi -E 's@(cdn.rawgit.+beautify/v)[^/]+@\1'$NEW_VERSION'@' README.md
-    sedi -E 's@(cdnjs.cloudflare.+beautify/)[^/]+@\1'$NEW_VERSION'@' README.md
-    sedi -E 's/\((README\.md:.js-beautify@).+\)/(\1'$NEW_VERSION')/' README.md
-    git add README.md
-    git commit -m "Bump version numbers in README.md"
+    # git clean -xfd || exit 1
+    # sedi -E 's@(cdn.rawgit.+beautify/v)[^/]+@\1'$NEW_VERSION'@' README.md
+    # sedi -E 's@(cdnjs.cloudflare.+beautify/)[^/]+@\1'$NEW_VERSION'@' README.md
+    # sedi -E 's/\((README\.md:.js-beautify@).+\)/(\1'$NEW_VERSION')/' README.md
+    # git add README.md
+    # git commit -m "Bump version numbers in README.md"
+    echo "..update readme versions ignored.."
 }
 
 main()
@@ -74,7 +77,7 @@ main()
     local NEW_VERSION=$1
     NEW_VERSION=$1
 
-    git checkout master
+    git checkout jsreport-release
 
     generate_changelog
     update_readme_versions

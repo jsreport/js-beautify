@@ -14,6 +14,11 @@ JavaScript, unpack scripts packed by Dean Edward’s popular packer,
 as well as deobfuscate scripts processed by
 [javascriptobfuscator.com](http://javascriptobfuscator.com/).
 
+# Development
+
+- Run tools/build.sh to prepare js files from js/src
+- Run tools/release.sh [version.number.here] to release a new version in npm
+
 # Usage
 You can beautify javascript using JS Beautifier in your web browser, or on the command-line using node.js or python.
 
