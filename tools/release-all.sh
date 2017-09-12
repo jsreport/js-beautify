@@ -12,8 +12,9 @@ esac
 
 generate_changelog()
 {
-    $SCRIPT_DIR/generate-changelog.sh beautify-web/js-beautify || exit 1
-    git commit -am "Update Changelog for $NEW_VERSION"
+    # $SCRIPT_DIR/generate-changelog.sh beautify-web/js-beautify || exit 1
+    # git commit -am "Update Changelog for $NEW_VERSION"
+    echo "..generate changelog ignored.."
 }
 
 release_python()
