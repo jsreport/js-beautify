@@ -16,8 +16,8 @@ as well as deobfuscate scripts processed by
 
 # Development
 
-- Run tools/build.sh to prepare js files from js/src
-- Run tools/release.sh [version.number.here] to release a new version in npm
+- Run ./build.sh all to prepare js files from js/src
+- Run ./tools/release.sh [version.number.here] to release a new version in npm
 
 # Usage
 You can beautify javascript using JS Beautifier in your web browser, or on the command-line using node.js or python.
