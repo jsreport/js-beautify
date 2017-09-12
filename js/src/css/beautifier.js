@@ -307,6 +307,22 @@ function Beautifier(source_text, options) {
             } else if (ch === '#' && peek() === '{') {
                 preserveSingleSpace(isAfterSpace);
                 print_string(eatString('}'));
+            } else if (ch === '{' && peek() === '#') {
+              // jsreport special syntax support
+              print.preserveSingleSpace();
+              output.push(eatString('}'));
+
+              var extractedSpace = skipWhitespace();
+
+              if (extractedSpace !== '') {
+                pos = pos - 1;
+              }
+
+              if (extractedSpace.indexOf('\n') !== - 1) {
+                print.newLine(true);
+              } else {
+                print.preserveSingleSpace();
+              }
             } else if (ch === '{') {
                 if (peek(true) === '}') {
                     eatWhitespace();
