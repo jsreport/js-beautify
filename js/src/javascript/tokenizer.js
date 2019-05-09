@@ -185,6 +185,31 @@ function Tokenizer(input_string, opts) {
             whitespace_before_token = whitespace_on_this_line.join('');
         }
 
+        if (last_token.type === 'TK_START_EXPR' && last_token.text === '{#') {
+            if (c === '}') {
+                return [c, 'TK_END_EXPR'];
+            }
+
+            while (input.peek() !== '}') {
+                c += input.next();
+                if (!input.hasNext()) {
+                    break;
+                }
+            }
+
+            return [c, 'TK_WORD'];
+        }
+
+        if (
+            last_token.type === 'TK_WORD' &&
+            tokens[tokens.length - 2] &&
+            tokens[tokens.length - 2].type === 'TK_START_EXPR' &&
+            tokens[tokens.length - 2].text === '{#' &&
+            c === '}'
+        ) {
+            return [c, 'TK_END_EXPR']
+        }
+
         if (digit.test(c) || (c === '.' && input.testChar(digit))) {
             var allow_decimal = true;
             var allow_e = true;
@@ -264,6 +289,11 @@ function Tokenizer(input_string, opts) {
 
         if (c === ')' || c === ']') {
             return [c, 'TK_END_EXPR'];
+        }
+
+        if (c === '{' && input.hasNext() && input.peek() === '#') {
+            c += input.next();
+            return [c, 'TK_START_EXPR'];
         }
 
         if (c === '{') {
