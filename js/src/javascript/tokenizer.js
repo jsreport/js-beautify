@@ -207,7 +207,7 @@ function Tokenizer(input_string, opts) {
             tokens[tokens.length - 2].text === '{#' &&
             c === '}'
         ) {
-            return [c, 'TK_END_EXPR']
+            return [c, 'TK_END_EXPR'];
         }
 
         if (digit.test(c) || (c === '.' && input.testChar(digit))) {
